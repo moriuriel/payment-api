@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Extensions\" />
+    <None Remove="Handlers\" />
+    <None Remove="Handlers\PostPayments\" />
+    <None Remove="Commons\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Extensions\" />
+    <Folder Include="Handlers\" />
+    <Folder Include="Handlers\PostPayments\" />
+    <Folder Include="Commons\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="12.1.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Payment.CrossCutting\Payment.CrossCutting.csproj" />
+    <ProjectReference Include="..\Payement.Infrastructure\Payment.Infrastructure.csproj" />
+  </ItemGroup>
+</Project>
