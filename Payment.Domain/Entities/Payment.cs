@@ -38,7 +38,7 @@ public class PaymentEntity : AggregateRoot
         DateTime? updatedAt = null,
         Guid? id = null)
     {
-        return new Payment(
+        return new PaymentEntity(
             id,
             payee,
             payer,
