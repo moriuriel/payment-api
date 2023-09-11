@@ -1,4 +1,5 @@
 ﻿using System.Text.Json;
+using Payment.Infrastructure.ExternalServices.Commons;
 
 namespace Payment.Infrastructure.ExternalServices.PaymentAuthorizer;
 
@@ -16,7 +17,8 @@ internal class PaymentAuthorizerService : IPaymentAuthorizerService
         var httpResponse = await _httpClient.GetAsync(requestUri: string.Empty, cancellationToken);
         var responseContent = await httpResponse.Content.ReadAsStringAsync(cancellationToken);
         if (!httpResponse.IsSuccessStatusCode || string.IsNullOrEmpty(responseContent))
-            throw new HttpRequestException(message: "could not query");
+            throw new HttpRequestException(
+                string.Format(Message.Error.HTTP_REQUEST, nameof(PaymentAuthorizerService), responseContent));
 
         try
         {

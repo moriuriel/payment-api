@@ -11,18 +11,22 @@
     <None Remove="Handlers\" />
     <None Remove="Handlers\PostPayments\" />
     <None Remove="Commons\" />
+    <None Remove="Handlers\PostPayments\Dto\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Extensions\" />
     <Folder Include="Handlers\" />
     <Folder Include="Handlers\PostPayments\" />
     <Folder Include="Commons\" />
+    <Folder Include="Handlers\PostPayments\Dto\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MediatR" Version="12.1.1" />
+    <PackageReference Include="FluentValidation" Version="11.7.1" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Payment.CrossCutting\Payment.CrossCutting.csproj" />
     <ProjectReference Include="..\Payement.Infrastructure\Payment.Infrastructure.csproj" />
+    <ProjectReference Include="..\Payment.Domain\Payment.Domain.csproj" />
   </ItemGroup>
 </Project>

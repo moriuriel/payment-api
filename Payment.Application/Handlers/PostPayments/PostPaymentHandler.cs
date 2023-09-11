@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Payment.Application.Commons;
+using Payment.Domain.Entities;
 using Payment.Infrastructure.ExternalServices.PaymentAuthorizer;
 
 namespace Payment.Application.Handlers.PostPayments;
@@ -15,10 +16,21 @@ public class PostPaymentHandler : IRequestHandler<PostPaymentRequest, Response>
 
     public async Task<Response> Handle(PostPaymentRequest request, CancellationToken cancellationToken)
     {
-        var paymentAuthorizerModel = await _paymentAuthorizerService.AuthorizePaymentAsync(cancellationToken);
-        if (paymentAuthorizerModel is not null && !paymentAuthorizerModel.IsPaymentAuthorized())
-            return ErrorResponse.Unauthorized("Unauthorized payment");
+        var payment = PaymentEntity.Factory(
+            idempotencyKey: request.IdempotencyKey,
+            payee: request.Payee,
+            payer: request.Payer,
+            amount: request.Amount,
+            createdAt: DateTime.UtcNow);
 
+        var paymentAuthorizer = await _paymentAuthorizerService.AuthorizePaymentAsync(cancellationToken);
+        if (paymentAuthorizer is not null && !paymentAuthorizer.IsPaymentAuthorized())
+        {
+            payment.Unauthorize();
+            return ErrorResponse.Unauthorized("Unauthorized payment");
+        }
+
+        payment.Authorize();
         return PostPaymentResponse.Created(Guid.NewGuid());
     }
 }
