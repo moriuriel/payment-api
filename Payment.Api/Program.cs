@@ -1,7 +1,6 @@
 ﻿using Payment.Application.Extensions;
 using Payment.CrossCutting.AppSettings;
 using Payment.Infrastructure.ExternalServices.PaymentAuthorizer;
-using Payment.Infrastructure.Database;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,7 +13,6 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddCustomMediatr();
 builder.Services.AddRouting(options => options.LowercaseUrls = true);
 builder.Services.AddPaymentAuthorizerService(configuration);
-builder.Services.AddDbExtension();
 builder.Services.AddCustomFluentValidation();
 
 builder.Services.AddApiVersioning(p =>
