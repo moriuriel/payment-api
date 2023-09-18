@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "PaymentAnalyzer.Worker": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development"
+      },
+      "dotnetRunMessages": true
+    }
+  }
+}
