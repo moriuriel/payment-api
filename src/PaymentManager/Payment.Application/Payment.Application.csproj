@@ -25,8 +25,9 @@
     <PackageReference Include="FluentValidation" Version="11.7.1" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Payment.CrossCutting\Payment.CrossCutting.csproj" />
-    <ProjectReference Include="..\Payement.Infrastructure\Payment.Infrastructure.csproj" />
-    <ProjectReference Include="..\Payment.Domain\Payment.Domain.csproj" />
+    <ProjectReference Include="..\..\Shared\Payment.CrossCutting\Payment.CrossCutting.csproj" />
+    <ProjectReference Include="..\..\Shared\Payment.Domain\Payment.Domain.csproj" />
+    <ProjectReference Include="..\..\..\test\Payment.Test\Payment.Test.csproj" />
+    <ProjectReference Include="..\..\Shared\Payement.Infrastructure\Payment.Infrastructure.csproj" />
   </ItemGroup>
 </Project>

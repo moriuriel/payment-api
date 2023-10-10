@@ -27,6 +27,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Payment.CrossCutting", "src
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Payment.Infrastructure", "src\Shared\Payement.Infrastructure\Payment.Infrastructure.csproj", "{E86A5EDE-B232-4365-9621-E6E85AAA98C3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Payment.Infrastructure.Database", "src\Shared\Payment.Infrastructure.Database\Payment.Infrastructure.Database.csproj", "{6A2E713E-645A-4D40-A318-DCA260DE6A4B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -61,6 +63,10 @@ Global
 		{E86A5EDE-B232-4365-9621-E6E85AAA98C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E86A5EDE-B232-4365-9621-E6E85AAA98C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E86A5EDE-B232-4365-9621-E6E85AAA98C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A2E713E-645A-4D40-A318-DCA260DE6A4B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A2E713E-645A-4D40-A318-DCA260DE6A4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A2E713E-645A-4D40-A318-DCA260DE6A4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A2E713E-645A-4D40-A318-DCA260DE6A4B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -79,5 +85,6 @@ Global
 		{CB875315-0622-4A2A-9EDE-06086E580B9D} = {561F3F00-08B3-4B39-B24F-8AADE6C6622E}
 		{8DEE9D79-C38E-4719-BCB6-8501B39FB994} = {561F3F00-08B3-4B39-B24F-8AADE6C6622E}
 		{E86A5EDE-B232-4365-9621-E6E85AAA98C3} = {561F3F00-08B3-4B39-B24F-8AADE6C6622E}
+		{6A2E713E-645A-4D40-A318-DCA260DE6A4B} = {561F3F00-08B3-4B39-B24F-8AADE6C6622E}
 	EndGlobalSection
 EndGlobal

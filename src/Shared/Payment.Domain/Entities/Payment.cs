@@ -7,7 +7,7 @@ public class PaymentEntity : AggregateRoot
     public Guid IdempotecyKey { get; set; }
     public Guid Payee { get; set; }
     public Guid Payer { get; set; }
-    public float Amount { get; set; }
+    public Decimal Amount { get; set; }
     public DateTime CreatedAt { get; set; }
     public DateTime? UpdatedAt { get; set; }
     public PaymentStatus Status { get; private set; }
@@ -16,8 +16,9 @@ public class PaymentEntity : AggregateRoot
         Guid? id,
         Guid payee,
         Guid payer,
-        float amount,
+        decimal amount,
         Guid idempotencyKey,
+        PaymentStatus status,
         DateTime createdAt,
         DateTime? updatedAt = null) : base(id: id ?? Guid.NewGuid())
     {
@@ -27,16 +28,18 @@ public class PaymentEntity : AggregateRoot
         Amount = amount;
         CreatedAt = createdAt;
         UpdatedAt = updatedAt;
+        Status = status;
     }
 
     public static PaymentEntity Factory(
         Guid payee,
         Guid payer,
-        float amount,
+        decimal amount,
         Guid idempotencyKey,
         DateTime createdAt,
         DateTime? updatedAt = null,
-        Guid? id = null)
+        Guid? id = null,
+        PaymentStatus status = PaymentStatus.Pending)
     {
         return new PaymentEntity(
             id,
@@ -44,8 +47,10 @@ public class PaymentEntity : AggregateRoot
             payer,
             amount,
             idempotencyKey,
+            status,
             createdAt,
-            updatedAt);
+            updatedAt
+            );
     }
 
     public void Authorize()

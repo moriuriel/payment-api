@@ -6,5 +6,5 @@ namespace Payment.Application.Handlers.PostPayments;
 public sealed record PostPaymentRequest(
     Guid Payee,
     Guid Payer,
-    float Amount,
+    decimal Amount,
     Guid IdempotencyKey) : IRequest<Response>;

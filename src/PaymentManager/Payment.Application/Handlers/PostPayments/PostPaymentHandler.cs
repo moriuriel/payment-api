@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Payment.Application.Commons;
 using Payment.Domain.Entities;
+using Payment.Domain.Interfaces.Repositories;
 using Payment.Infrastructure.ExternalServices.PaymentAuthorizer;
 
 namespace Payment.Application.Handlers.PostPayments;
@@ -8,10 +9,14 @@ namespace Payment.Application.Handlers.PostPayments;
 public class PostPaymentHandler : IRequestHandler<PostPaymentRequest, Response>
 {
     private readonly IPaymentAuthorizerService _paymentAuthorizerService;
+    private readonly IDataBaseRespository _dataBaseRepository;
 
-    public PostPaymentHandler(IPaymentAuthorizerService paymentAuthorizerService)
+    public PostPaymentHandler(
+        IPaymentAuthorizerService paymentAuthorizerService,
+        IDataBaseRespository dataBaseRepository)
     {
         _paymentAuthorizerService = paymentAuthorizerService;
+        _dataBaseRepository = dataBaseRepository;
     }
 
     public async Task<Response> Handle(PostPaymentRequest request, CancellationToken cancellationToken)
@@ -23,15 +28,10 @@ public class PostPaymentHandler : IRequestHandler<PostPaymentRequest, Response>
             amount: request.Amount,
             createdAt: DateTime.UtcNow);
 
-        var paymentAuthorizer = await _paymentAuthorizerService.AuthorizePaymentAsync(cancellationToken);
-        if (paymentAuthorizer is not null && !paymentAuthorizer.IsPaymentAuthorized())
-        {
-            payment.Unauthorize();
-            return ErrorResponse.Unauthorized("Unauthorized payment");
-        }
+       
+        await _dataBaseRepository.UpsertAsync(payment, cancellationToken);
 
-        payment.Authorize();
-        return PostPaymentResponse.Created(Guid.NewGuid());
+        return PostPaymentResponse.Created(payment.Id);
     }
 }
 

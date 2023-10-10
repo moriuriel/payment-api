@@ -5,6 +5,7 @@ namespace Payment.Domain.Enums;
 [JsonConverter(typeof(JsonStringEnumConverter))]
 public enum PaymentStatus
 {
+    Pending,
     Unauthorized,
     Authorized
 }
