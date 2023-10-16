@@ -2,20 +2,16 @@
 using Payment.Application.Commons;
 using Payment.Domain.Entities;
 using Payment.Domain.Interfaces.Repositories;
-using Payment.Infrastructure.ExternalServices.PaymentAuthorizer;
 
 namespace Payment.Application.Handlers.PostPayments;
 
 public class PostPaymentHandler : IRequestHandler<PostPaymentRequest, Response>
 {
-    private readonly IPaymentAuthorizerService _paymentAuthorizerService;
     private readonly IDataBaseRespository _dataBaseRepository;
 
     public PostPaymentHandler(
-        IPaymentAuthorizerService paymentAuthorizerService,
         IDataBaseRespository dataBaseRepository)
     {
-        _paymentAuthorizerService = paymentAuthorizerService;
         _dataBaseRepository = dataBaseRepository;
     }
 
@@ -28,7 +24,7 @@ public class PostPaymentHandler : IRequestHandler<PostPaymentRequest, Response>
             amount: request.Amount,
             createdAt: DateTime.UtcNow);
 
-       
+
         await _dataBaseRepository.UpsertAsync(payment, cancellationToken);
 
         return PostPaymentResponse.Created(payment.Id);
