@@ -7,7 +7,7 @@ public class PaymentEntity : AggregateRoot
     public Guid IdempotecyKey { get; set; }
     public Guid Payee { get; set; }
     public Guid Payer { get; set; }
-    public Decimal Amount { get; set; }
+    public decimal Amount { get; set; }
     public DateTime CreatedAt { get; set; }
     public DateTime? UpdatedAt { get; set; }
     public PaymentStatus Status { get; private set; }

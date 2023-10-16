@@ -12,6 +12,7 @@
     <None Remove="Handlers\PostPayments\" />
     <None Remove="Commons\" />
     <None Remove="Handlers\PostPayments\Dto\" />
+    <None Remove="Handlers\GetPaymentById\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Extensions\" />
@@ -19,6 +20,7 @@
     <Folder Include="Handlers\PostPayments\" />
     <Folder Include="Commons\" />
     <Folder Include="Handlers\PostPayments\Dto\" />
+    <Folder Include="Handlers\GetPaymentById\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MediatR" Version="12.1.1" />
