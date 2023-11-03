@@ -39,6 +39,7 @@ public sealed class PaymentController : ControllerBase
 
     [HttpGet("{paymentId}")]
     [ProducesResponseType(type: typeof(GetPaymentByIdResponse), statusCode: (int)HttpStatusCode.OK)]
+    [ProducesResponseType(statusCode: (int)HttpStatusCode.NoContent)]
     public async Task<IActionResult> FindById(Guid paymentId, CancellationToken cancellationToken)
     {
         var result = await _mediator.Send(
